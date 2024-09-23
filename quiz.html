@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+
+    <p>What is the capital of Wisconsin?</p>
+
+    <button class="wrong-answer">Bayfield</button>
+    <button id="correct-answer">Madison</button>
+    <button class="wrong-answer">Milwaukee</button>
+
+    <p id="result"></p>
+
+<script>
+    // Select the correct answer button by ID
+    let correctAnswerButton = document.querySelector('#correct-answer')
+
+    // Select the result paragraph by ID. This will be used to display a "correct answer!" message when the user clikcs the correct button
+    let result = document.querySelector('#result')
+
+    // Select all of the wrong-answer buttons 
+    let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
+    wrongAnswerButtons.forEach(function(wrongAnswerButton){
+        // Add an event listener to each button
+        wrongAnswerButton.addEventListener('click', function(){
+            result.innerHTML = 'Wrong answer, try again?'
+            correctAnswerButton.style.background = defaultButtonBackground
+        })
+    })
+
+    /* Start alternate loop
+        let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
+
+        for (let x = 0; x < wrongAnswerButtons.length; x++) {
+        let wrongAnswerButton = wrongAnswerButtons[x]
+        wrongAnswerButton.addEventListener('click', function() {
+        result.innerHTML = 'Wrong answer, try again?'
+        correctAnswerButton.style.background = defaultButtonBackground
+        })
+        }
+     End alternate loop*/ 
+
+    // Addd event listener to the correct answer button
+    correctAnswerButton.addEventListener('click', function(){
+        result.innerHTML = 'Correct answer!' 
+        // display message in the result paragraph
+        correctAnswerButton.style.background = 'cyan'
+        // Change color of correct button when clicked
+    }) 
+
+</script>    
+</body>
+</html>

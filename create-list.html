@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Elements</title>
+</head>
+<body>
+    
+    <p> Enter text to add to the list</p>
+    <input id="new-text"></input>
+    <button id="add-text">Add</button>
+    <button id="clear">Clear</button>
+    <p id="error-message"></p>
+
+    <ul id="list-of-text"></ul> <!-- Empty unordered list-->
+    
+
+    <script>
+        let errorMessage = document.querySelector('#error-message')
+        let textInput = document.querySelector('#new-text')
+        let addButton = document.querySelector('#add-text')
+        // add clear button
+        let clearButton = document.querySelector('#clear')
+        // create list item counter
+        let amountAdded = 0
+        let textList = document.querySelector('#list-of-text')
+
+        document.addEventListener('keyup', function(){
+            if (event.keyCode == 13) {
+                addButton.click()  // click add if user presses enter
+            }
+        })
+        addButton.addEventListener('click', function(){
+            amountAdded += 1
+             // limit amount to 10 li
+        errorMessage.innerHTML = '' // set error message to nothing so there's no text unless the user needs information 
+            if (amountAdded >= 10) {
+                newText = ''
+                errorMessage.innerHTML = "You may not add more than 10 items. Please clear the list to add more"
+            } else if (textInput.value == 0){
+                errorMessage.innerHTML = "please enter something :)" // if there is no value, don't add to the li. display message
+                amountAdded -= 1 // since we aren't adding a new li, the running total needs to be corrected (-1)
+            } else {
+            // read text input
+            let newText = textInput.value 
+            // create new list element
+            let newListItem = document.createElement('li')
+            newListItem.innerHTML = newText
+            // add new li as child of ul 
+            textList.appendChild(newListItem)
+            // clear the text in input
+            textInput.value = ''
+            }
+        })
+        clearButton.addEventListener('click', function(){
+            textList.innerHTML = ''
+            // reset amount added so you can create new list
+            amountAdded = 0
+        })
+
+    </script>
+</body>
+</html>
